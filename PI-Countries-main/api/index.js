@@ -18,11 +18,28 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn, Country } = require('./src/db.js');
+const axios = require("axios");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+ axios("https://rest-countries.up.railway.app/v2/all").
+ then((info) => info.data).
+  then((countries)=> {countries.forEach(async (dat)=> {
+      Country.create(
+        {id: dat.alpha3Code,
+          name: dat.name,
+          flag: dat.flag,
+          continent: dat.region,
+          capital: dat.capital,
+          subregion: dat.subregion,
+          area: dat.area,
+          population: dat.population,
+        })
+      })
+    })
+ 
   });
 });

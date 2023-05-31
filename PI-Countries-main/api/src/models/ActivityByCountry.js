@@ -9,46 +9,38 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false,
       defaultValue: DataTypes.UUIDV4,
-      },
-      alpha3Code:{
-        type: DataTypes.STRING,
-        primaryKey: true,
-        allowNull: false,
-        validate: {
-        len: [1,3],
-        is: /^[a-zA-Z]{1,3}$/,
-        }
+      
     },
     name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        
-      },
-      flag: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      region: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      capital: {
-        type: DataTypes.STRING,
-        allowNull: false,
-  
-      },
-      subregion: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      area: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      population: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+      type: DataTypes.STRING,
+      allowNull: false,
+      
+    },
+    flag: {
+      type: DataTypes.STRING,
+      
+    },
+    continent: {
+      type: DataTypes.STRING,
+      
+    },
+    capital: {
+      type: DataTypes.STRING,
+      
+
+    },
+    subregion: {
+      type: DataTypes.STRING,
+      
+    },
+    area: {
+      type: DataTypes.STRING,
+      
+    },
+    population: {
+      type: DataTypes.STRING,
+      
+    },
     nameActivity: {
       type: DataTypes.STRING,
       allowNull: false,
