@@ -4,9 +4,19 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('country', {
+    alpha3Code:{
+      type: DataTypes.STRING,
+      primaryKey: true,
+      allowNull: false,
+      validate: {
+      len: [1,3],
+      is: /^[a-zA-Z]{1,3}$/,
+      },
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      
     },
     flag: {
       type: DataTypes.STRING,
