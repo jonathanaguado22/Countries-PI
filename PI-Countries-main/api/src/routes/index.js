@@ -14,7 +14,5 @@ router.use("/activities", activitiesRouter);
 
 router.use("/countries", countriesRouter);
 
-router.get("/", (req,res)=>{
-    res.status(200).send("Ruta principal o home");
-});
+
 module.exports = router;

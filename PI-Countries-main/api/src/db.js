@@ -2,6 +2,9 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+// const Country = require("./models/Country");
+// const Activity = require("./models/Activity");
+// const ActivityByCountry = require("./models/ActivityByCountry");
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
@@ -9,6 +12,10 @@ const {
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  define: {
+    charset: 'utf8mb4',
+    collate: 'utf8mb4_general_ci',
+  },
 });
 const basename = path.basename(__filename);
 
@@ -39,6 +46,8 @@ const { Activity, Country, ActivityByCountry } = sequelize.models;
 Country.belongsToMany(Activity, { through: ActivityByCountry });
 
 Activity.belongsToMany(Country, { through: ActivityByCountry });
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

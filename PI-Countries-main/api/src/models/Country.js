@@ -10,12 +10,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
       len: [1,3],
-      is: /^[a-zA-Z]{1,3}$/,
       },
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      
       
     },
     flag: {

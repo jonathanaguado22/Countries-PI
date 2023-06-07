@@ -29,19 +29,21 @@ conn.sync({ force: true }).then(() => {
     
  axios("https://rest-countries.up.railway.app/v2/all").
  then((info) => info.data).
-  then((countries)=> {countries.forEach(async (dat)=> {
+  then((countries)=> { countries.forEach(async (dat)=> {
       Country.create(
         {id: dat.alpha3Code,
           name: dat.name,
-          flag: dat.flags.png,
+          flag: dat.flag,
           continent: dat.region,
           capital: dat.capital,
           subregion: dat.subregion,
           area: dat.area,
           population: dat.population,
         })
-      })
+      }); 
+      
     })
  
   });
 });
+

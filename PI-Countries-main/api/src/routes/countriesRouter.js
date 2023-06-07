@@ -1,9 +1,25 @@
 const { Router } = require("express");
-
+const { getCountries, getCountryName } = require("../controllers/controllers");
 const countriesRouter = Router();
 
-countriesRouter.get("/", (req,res)=>{
-    res.status(200).send("aca hacer la ruta / y /name");
+countriesRouter.get("/", async (req,res)=>{
+    const {name}= req.query;
+console.log(name);
+    try {
+        
+    if(name){
+     let nameByQuery = await getCountryName(name);
+    res.status(200).send(nameByQuery);
+}else{
+    let getAll = await getCountries();
+
+    res.status(200).send(getAll);
+} 
+    } catch (error) {
+       
+        res.status(404).json({error:error.mesagge})
+    }
+   
 });
 
 countriesRouter.get("/:id", (req,res)=>{
