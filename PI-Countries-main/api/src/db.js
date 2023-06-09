@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const { log } = require('console');
 // const Country = require("./models/Country");
 // const Activity = require("./models/Activity");
 // const ActivityByCountry = require("./models/ActivityByCountry");
@@ -38,15 +39,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Activity, Country, ActivityByCountry } = sequelize.models;
+const { Activity, Country } = sequelize.models;
 
 // // Aca vendrian las relaciones
 // // Product.hasMany(Reviews);
 
-Country.belongsToMany(Activity, { through: ActivityByCountry });
+Country.belongsToMany(Activity, { through: 'country_activity' });
 
-Activity.belongsToMany(Country, { through: ActivityByCountry });
-
+Activity.belongsToMany(Country, { through: 'country_activity' });
 
 
 module.exports = {

@@ -11,12 +11,10 @@ module.exports = (sequelize) => {
       },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
       
     },
     difficulty: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         validate: {
           isIn: {
             args: [[1, 2, 3, 4, 5]]
@@ -28,7 +26,7 @@ module.exports = (sequelize) => {
       },
       season: {
         type: DataTypes.ENUM('Summer', 'Autum', 'Winter', 'Spring'),
-        allowNull: false,
+        
       }
   },
   { 

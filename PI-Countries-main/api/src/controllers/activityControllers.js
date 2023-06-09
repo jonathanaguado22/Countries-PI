@@ -1,26 +1,27 @@
-const {  Activity } = require("../db");
+const {  Activity, Country,  } = require("../db");
 const {Op} = require("sequelize");
 
 
+
 const postActivity = async (name, difficulty, duration, season, countries) => {
-
-    let findActivity = await Activity.findOrCreate({
-        where:{
-            name:{
-                [Op.eq]: name
-            }
-        },
-        defaults: { difficulty, duration, season },
+    
+  
+    const [activity, created] = await Activity.findOrCreate({
+      where: { name },
+      defaults: { difficulty, duration, season },
     });
+  
+    const foundCountries = await Country.findAll({
+      where: { name: { [Op.iLike]: `%${countries}%` } },
+    });
+  
+    await Promise.all(
+      foundCountries.map((country) => country.addActivity(activity))
+    );
+  
+    return activity;
+  };
 
-    if(!countries || countries.length === 0){
-        throw new Error("The activity must have at least one country")
-    }
-
-    let activityCountry = await findActivity.setCountries(countries);
-
-    return activityCountry;
-};
 
 const getActivities = async ()=> {
 
@@ -39,3 +40,10 @@ module.exports = {
     postActivity
 
 };
+
+
+    
+      
+  
+
+  
