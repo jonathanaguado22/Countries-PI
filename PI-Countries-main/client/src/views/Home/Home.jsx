@@ -1,6 +1,6 @@
 import React from "react";
 import CardsContainer from "../../component/CardsContainer/CardsContainer";
-import "./Home.module.css";
+import "./Home.css";
 
 const Home = () => {
   return (

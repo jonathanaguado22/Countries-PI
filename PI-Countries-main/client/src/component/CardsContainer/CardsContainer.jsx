@@ -26,7 +26,6 @@ const CardsContainer = () => {
           key={con.name}
           flag={con.flag}
           name={con.name}
-          capital={con.capital}
           continent={con.continent}
         />
       ))}
