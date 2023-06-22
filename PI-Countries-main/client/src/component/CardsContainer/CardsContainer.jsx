@@ -10,7 +10,21 @@ const CardsContainer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3001/countries");
-        setCountries(response.data);
+        const sortedCountries = response.data.sort((a, b) => {
+          const nameA = a.name.toUpperCase();
+          const nameB = b.name.toUpperCase();
+
+          if (nameA < nameB) {
+            return -1;
+          }
+
+          if (nameA > nameB) {
+            return 1;
+          }
+
+          return 0;
+        });
+        setCountries(sortedCountries);
       } catch (error) {
         console.log("Error al obtener los países:", error);
       }
@@ -18,7 +32,7 @@ const CardsContainer = () => {
 
     fetchData();
   }, []);
-
+  
   return (
     <div className="cards-container"> 
       {countries.map((con) => (

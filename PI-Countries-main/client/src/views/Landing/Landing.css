@@ -1,0 +1,50 @@
+ html, body{
+    margin: 0;
+    padding: 0;
+ }
+ 
+ .landing-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+  .landing-container {
+    background-image: url('./imagenTierra.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+    
+ @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+  .welcome-message {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 100px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+  }
+  
+  .buttonCss {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #d11313;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .buttonCss:hover {
+    background-color: #0056b3;
+  }
+  
+
