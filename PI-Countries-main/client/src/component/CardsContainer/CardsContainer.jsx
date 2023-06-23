@@ -1,42 +1,28 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
-import "./CardsContainer.css"; 
+import "./CardsContainer.css";
+import {  getCountry } from "../../redux/actions";
 
 const CardsContainer = () => {
-  const [countries, setCountries] = useState([]);
+  
+ 
+  const dispatch = useDispatch();
+
+ 
+
+  const countries = useSelector((state) => state.countries);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/countries");
-        const sortedCountries = response.data.sort((a, b) => {
-          const nameA = a.name.toUpperCase();
-          const nameB = b.name.toUpperCase();
+    dispatch(getCountry());
+  }, [dispatch]);
 
-          if (nameA < nameB) {
-            return -1;
-          }
-
-          if (nameA > nameB) {
-            return 1;
-          }
-
-          return 0;
-        });
-        setCountries(sortedCountries);
-      } catch (error) {
-        console.log("Error al obtener los países:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  
   return (
-    <div className="cards-container"> 
+    <div className="cards-container">
+     
+
       {countries.map((con) => (
-        <Card 
+        <Card
           key={con.name}
           flag={con.flag}
           name={con.name}
@@ -48,4 +34,5 @@ const CardsContainer = () => {
 };
 
 export default CardsContainer;
+
 
