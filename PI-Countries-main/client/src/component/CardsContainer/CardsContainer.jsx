@@ -2,37 +2,37 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
 import "./CardsContainer.css";
-import {  getCountry } from "../../redux/actions";
+import { getCountry } from "../../redux/actions";
 
 const CardsContainer = () => {
-  
- 
   const dispatch = useDispatch();
-
+  const filteredCountries = useSelector((state) => state.filteredCountries);
  
 
-  const countries = useSelector((state) => state.countries);
 
   useEffect(() => {
+   
     dispatch(getCountry());
   }, [dispatch]);
 
   return (
     <div className="cards-container">
-     
-
-      {countries.map((con) => (
+      { filteredCountries.map((country) => (
         <Card
-          key={con.name}
-          flag={con.flag}
-          name={con.name}
-          continent={con.continent}
-        />
-      ))}
-    </div>
+        key={country.name}
+        flag={country.flag}
+        name={country.name}
+        continent={country.continent}
+      />)
+       
+      )
+      }
+  
+  </div>
   );
 };
 
 export default CardsContainer;
+
 
 
