@@ -11,14 +11,15 @@ const postActivity = async (name, difficulty, duration, season, countries) => {
       defaults: { difficulty, duration, season },
     });
   
-    const foundCountries = await Country.findAll({
-      where: { name: { [Op.iLike]: `%${countries}%` } },
-    });
+    if (countries && countries.length > 0) {
+      const foundCountries = await Country.findAll({
+        where: { name: { [Op.iLike]: { [Op.any]: countries } } },
+      });
   
-    await Promise.all(
-      foundCountries.map((country) => country.addActivity(activity))
-    );
-  
+      await Promise.all(
+        foundCountries.map((country) => country.addActivity(activity))
+      );
+    }
     return activity;
   };
 
@@ -30,6 +31,16 @@ const getActivities = async ()=> {
     return allActivity;
 };
 
+const deleteActivity = async (name)=>{
+
+    const deletedActivityCount = await Activity.destroy({
+      where: { name: name },
+    });
+  
+  
+    return deletedActivityCount;
+ 
+}
 
 
 
@@ -37,13 +48,8 @@ const getActivities = async ()=> {
 module.exports = {
 
     getActivities,
-    postActivity
+    postActivity,
+    deleteActivity
 
 };
 
-
-    
-      
-  
-
-  

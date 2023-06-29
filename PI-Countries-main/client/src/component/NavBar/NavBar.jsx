@@ -1,38 +1,46 @@
 import { Link } from "react-router-dom";
-import "./NavBar.css";
+import styles from "./NavBar.module.css";
+import { getCountry, getCountryName } from "../../redux/actions";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+const NavBar = ({ setCurrentPage }) => {
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
 
-const NavBar = () =>{
+  useEffect(() => {
+    dispatch(getCountry());
+  }, [dispatch]);
 
-    return(
-<div className="mainContainer">
+  function handleInputChange(e) {
+    dispatch(getCountryName(e));
+    setCurrentPage(1);
+  }
 
-            <Link to="/home">HOME</Link>
-            <Link to="/create" >FORM</Link>
-            
-<div> 
-<div>
-                Alphabetical order:   
-            <select >
-                <option> Alphabetical </option>
-                <option value="Upward"> Upward </option>
-                <option value="Falling"> Falling </option>
-            </select>
-            </div>
-            <div>
-                Order by population: 
-            <select >
-                <option> Poulation </option>
-                <option value="less">From less to more</option>
-                <option value="more">from more to less</option>
-            </select>
-            </div></div>   
-   
-
-
-        </div>
-
-    )
+  return (
+    <div className={styles.mainContainer}>
+      <div className={styles.homeLink}>
+        <Link to="/home">Home</Link>
+      </div>
+      <div className={styles.searchContainer}>
+        <div className={styles.searchLabel}>Search countries</div>
+        <input
+          value={name}
+          type="text"
+          placeholder="Country name"
+          onChange={(e) => {
+            setName(e.target.value);
+            handleInputChange(e.target.value);
+          }}
+        />
+      </div>
+      <div className={styles.createLink}>
+        <Link to="/create">
+          <button>Create Actividad</button>
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default NavBar;

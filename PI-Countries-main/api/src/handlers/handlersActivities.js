@@ -1,4 +1,4 @@
-const { getActivities, postActivity } = require("../controllers/activityControllers");
+const { getActivities, postActivity, deleteActivity } = require("../controllers/activityControllers");
 
 
 
@@ -28,8 +28,27 @@ const handlerGetAll = async (req, res)=>{
     }
 };
 
+const handlerDeleteAct = async (req, res) =>{
+    try {
+        const {name} = req.params
+
+        let deleteAct = await deleteActivity(name);
+        
+
+        if (deleteAct === 0) {
+            return res.status(404).json({ message: 'No se encontró la actividad' });
+          }
+      
+          return res.status(200).json({ message: 'Actividad eliminada exitosamente' });
+        } catch (error) {
+          console.error('Error al eliminar la actividad:', error);
+          return res.status(500).json({ message: 'Error interno del servidor' });
+        }
+      };
+
 
 module.exports = {
     handlerGetAll,
-    handlerPost
+    handlerPost,
+    handlerDeleteAct
 }

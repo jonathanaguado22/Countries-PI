@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: url('../Form/img/imgFondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+}
+
+.form {
+  display: inline-block;
+  flex-direction: column;
+  background-color: #545457;
+  align-items: center;
+  margin-top: 20px;
+  border: 1px solid #000000;
+  border-radius: 15%;
+  padding: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fffaff;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.title:hover {
+  transform: scale(1.1);
+}
+
+.link {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fffaff;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #fffaff;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fffaff;
+  color: #303036;
+}
+
+.formGroup ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.formGroup li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.formGroup li button {
+  margin-left: 10px;
+  padding: 3px 5px;
+  border: none;
+  background-color: #fc5130;
+  color: #fffaff;
+  cursor: pointer;
+}
+
+.formGroup li button:hover {
+  background-color: #050401;
+}
+
+.formGroup p {
+  color: #fc5130;
+  margin: 0;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.formGroup button[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  background-color: #30bced;
+  color: #fffaff;
+  cursor: pointer;
+}
+
+.formGroup button[type="submit"]:disabled {
+  background-color: #bcbcbc;
+  cursor: not-allowed;
+}
